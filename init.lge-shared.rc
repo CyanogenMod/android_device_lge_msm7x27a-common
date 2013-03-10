@@ -130,6 +130,10 @@ on post-fs-data
     chown system system /data/logger
     chmod 0771 /data/logger
     # Log Service [END]
+ 
+    # Dummy file, to keep the API happy. The default firmware does both modes
+    write /data/misc/wifi/fwpath ""
+    chmod 0666 /data/misc/wifi/fwpath
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
@@ -294,3 +298,10 @@ service charger /charger
     user root
     group root 
     oneshot
+
+service hostapd /system/bin/hostapd -dddd /data/misc/wifi/hostapd.conf
+    class late_start
+    user root
+    group root
+    oneshot
+    disabled
