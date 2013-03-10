@@ -3,29 +3,17 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-$(call inherit-product-if-exists, vendor/lge/p700/p700-vendor.mk)
-
-DEVICE_PACKAGE_OVERLAYS += device/lge/p700/overlay
-
-PRODUCT_TAGS += dalvik.gc.type-precise
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
-
-PRODUCT_AAPT_CONFIG := normal hdpi
+DEVICE_PACKAGE_OVERLAYS += device/lge/msm7x27a-common/overlay
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.u0.rc:root/init.u0.rc \
-    $(LOCAL_PATH)/ueventd.u0.rc:root/ueventd.u0.rc \
-    $(LOCAL_PATH)/init.u0.usb.rc:root/init.u0.usb.rc
+    $(LOCAL_PATH)/init.lge-shared.rc:root/init.lge-shared.rc \
+    $(LOCAL_PATH)/init.lge.usb.rc:root/init.lge.usb.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    $(LOCAL_PATH)/configs/u0_keypad.kl:system/usr/keylayout/u0_keypad.kl \
-    $(LOCAL_PATH)/configs/melfas-ts.idc:system/usr/idc/melfas-ts.idc \
-    $(LOCAL_PATH)/configs/melfas-ts.kl:system/usr/keylayout/qwerty.kl \
-    $(LOCAL_PATH)/configs/melfas-ts.kl:system/usr/keylayout/melfas-ts.kl \
     $(LOCAL_PATH)/configs/AudioFilter.csv:system/etc/AudioFilter.csv \
     $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab
 
@@ -41,7 +29,6 @@ $(call inherit-product, build/target/product/full.mk)
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
@@ -57,9 +44,7 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/prebuilt/librasdioif.ko:system/lib/modules/librasdioif.ko \
-    $(LOCAL_PATH)/prebuilt/wlan.ko:system/lib/modules/wlan.ko
+    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 # BT
 PRODUCT_COPY_FILES += \
@@ -72,8 +57,6 @@ PRODUCT_PACKAGES += \
     gralloc.msm7x27a \
     hwcomposer.msm7x27a \
     copybit.msm7x27a \
-    gps.p700 \
-    power.p700 \
     audio.a2dp.default \
     audio.primary.msm7x27a \
     audio_policy.msm7x27a \
@@ -93,9 +76,24 @@ PRODUCT_PACKAGES += \
     Nfc \
     Tag
 
+# Common properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.fb.rgb565=0 \
+    debug.sf.hw=1 \
+    debug.composition.type=mdp \
+    ro.opengles.version=131072 \
+    com.qc.hardware=true \
+    persist.sys.use_dithering=1 \
+    wifi.interface=wlan0 \
+    rild.libpath=/system/lib/libril-qc-1.so \
+    ro.telephony.ril_class=LGEQualcommUiccRIL \
+    ro.telephony.default_network=0 \
+    telephony.lteOnGsmDevice=0 \
+    persist.sys.usb.config=mtp,adb \
+    hwui.render_dirty_regions=false \
+    ro.max.fling_velocity=4000 \
+    sys.mem.max_hidden_apps=3
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := full_p700
-PRODUCT_DEVICE := p700
-PRODUCT_MODEL := LG-P700
 PRODUCT_MANUFACTURER := LGE
 PRODUCT_BRAND := lge

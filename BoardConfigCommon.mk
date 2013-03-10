@@ -1,8 +1,5 @@
 USE_CAMERA_STUB := true
 
-# inherit from the proprietary version
--include vendor/lge/p700/BoardConfigVendor.mk
-
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
@@ -12,10 +9,8 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_CPU_SMP := true
-TARGET_BOOTLOADER_BOARD_NAME := p700
 TARGET_CORTEX_CACHE_LINE_32 := true
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=u0 lge.signed_image=false
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_FORCE_RAMDISK_ADDRESS := 0x01400000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -29,16 +24,11 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 487136952
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 2920577761
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-TARGET_KERNEL_CONFIG := cyanogenmod_u0_defconfig
-TARGET_PREBUILT_KERNEL := device/lge/p700/kernel
 TARGET_KERNEL_SOURCE := kernel/lge/msm7x27a-common
 
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 
 BOARD_HAS_NO_SELECT_BUTTON := true
-
-## We need this for the flipped screen
-BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p700/recovery/graphics.c
 
 # Use this flag if the board has a ext4 partition larger than 2gb
 #BOARD_HAS_LARGE_FILESYSTEM := true
@@ -47,7 +37,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/p700/include
+TARGET_SPECIFIC_HEADER_PATH := device/lge/msm7x27a-common/include
 
 USE_OPENGL_RENDERER := true
 
@@ -61,7 +51,7 @@ TARGET_QCOM_HDMI_OUT := false
 TARGET_FORCE_CPU_UPLOAD := true
 BOARD_USES_QCOM_LIBS := true
 BOARD_USE_QCOM_PMEM := true
-BOARD_EGL_CFG := device/lge/p700/egl.cfg
+BOARD_EGL_CFG := device/lge/msm7x27a-common/egl.cfg
 TARGET_GRALLOC_USES_ASHMEM := true
 
 BOARD_HAVE_BLUETOOTH := true
@@ -69,7 +59,6 @@ BOARD_HAVE_BLUETOOTH := true
 # to enable the GPS HAL
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_GPS := true
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := p700
 # AMSS version to use for GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
