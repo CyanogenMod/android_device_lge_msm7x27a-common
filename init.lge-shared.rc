@@ -18,6 +18,10 @@ on init
     chown nfc nfc /dev/pn544
     setprop ro.nfc.port I2C
 
+# Torch perms
+    chown system camera /sys/devices/platform/i2c-gpio.3/i2c-3/3-0030/brightness_uA
+    chmod 0660          /sys/devices/platform/i2c-gpio.3/i2c-3/3-0030/brightness_uA
+
 on emmc-fs
 # mount mmc partitions
     wait /dev/block/mmcblk0p14

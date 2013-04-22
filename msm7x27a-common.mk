@@ -93,6 +93,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.max.fling_velocity=4000 \
     sys.mem.max_hidden_apps=3
 
+# Enable Torch
+PRODUCT_PACKAGES += Torch
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_MANUFACTURER := LGE
 PRODUCT_BRAND := lge
