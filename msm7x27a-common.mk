@@ -89,7 +89,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=0 \
     telephony.lteOnGsmDevice=0 \
     persist.sys.usb.config=mtp,adb \
-    hwui.render_dirty_regions=false \
+    hwui.render_dirty_regions=true \
     ro.max.fling_velocity=4000 \
     sys.mem.max_hidden_apps=3
 
