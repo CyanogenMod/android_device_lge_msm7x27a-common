@@ -19,6 +19,7 @@ PRODUCT_COPY_FILES += \
 
 
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
@@ -89,12 +90,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=0 \
     telephony.lteOnGsmDevice=0 \
     persist.sys.usb.config=mtp,adb \
-    hwui.render_dirty_regions=true \
+    hwui.render_dirty_regions=false \
     ro.max.fling_velocity=4000 \
     sys.mem.max_hidden_apps=3
-
-# Enable Torch
-PRODUCT_PACKAGES += Torch
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_MANUFACTURER := LGE
